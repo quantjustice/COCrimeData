@@ -1,4 +1,4 @@
-# COCrimeData
+# Colorado Crime Data - 2019 & 2020
 comparing 2019 and 2020 crime data for the ACLU of Colorado
 
 ## Notes: 
@@ -10,17 +10,11 @@ comparing 2019 and 2020 crime data for the ACLU of Colorado
 
 Crimes against society decreased from 2019 to 2020, crimes against persons stayed the same, increase in property crime accounts for the entirety of the increase in crime from 2019 to 2020. 
 
-## All Colorado
-
 ![num](plots/co-numberofcrimes.png)
 
 ## By County
 
-![crimerate](plots/county-type-comp.png)
-
-## Percent Change
-
-![crimerate](plots/county-percentchange-violentcrime.png)
+Most of the fourteen most populous counties saw an increase in property crime, decrease in "crimes against society" and little or no change in crimes against persons. 
 
 ![crimerate](plots/county-percentchange-type.png)
 
