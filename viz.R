@@ -52,7 +52,6 @@ count <- full_join(select(co19, jurisdictionbygeography, numberofcrimes, year),
 count <- subset(count, !jurisdictionbygeography=="Colorado")
 
 # visualize
-pdf("numberofcrimes-comp.pdf", family="Source Sans Pro", width=7.2, height=5.8)
 ggplot(count, aes(reorder(jurisdictionbygeography, numberofcrimes), 
                   numberofcrimes, fill=as.factor(year))) + 
   geom_bar(stat="identity", position="dodge") + coord_flip() +
@@ -63,8 +62,6 @@ ggplot(count, aes(reorder(jurisdictionbygeography, numberofcrimes),
        title="Number of Crimes in Fourteen Largest CO Counties, 2019 vs. 2020", 
        caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") + 
   theme + scale_fill_manual(values=brewer.pal(9, "Greens")[c(3,7)])
-dev.off()
-embed_fonts("numberofcrimes-comp.pdf", outfile="numberofcrimes-comp.pdf")
 
 # pdf("event-attend-type-extra.pdf", family="Source Sans Pro", width=7, height=8)
 # dev.off()
@@ -92,7 +89,7 @@ ggplot(rate, aes(reorder(jurisdictionbygeography, crimerateper100000),
   labs(y="Crime Rate (per 100,000)", x="County", fill="Year", 
        title="Crime Rate per 100,000 in Fourteen Largest CO Counties, 2019 vs. 2020", 
        caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") + 
-  theme + scale_fill_manual(values=brewer.pal(9, "Greens")[c(4,9)])
+  theme + scale_fill_manual(values=brewer.pal(9, "Greens")[c(3,7)])
 
 # .............................................................................
 
@@ -144,7 +141,7 @@ ggplot(type, aes(x=offensetype, y=numberofcrimes, fill=factor(year))) +
   scale_x_discrete(labels=wrap_format(15))+
   scale_y_continuous(labels = scales::comma) +
   geom_text(aes(label=prettyNum(numberofcrimes, big.mark=",")), 
-            position = position_dodge(width = 1), size=2.5, vjust=1.2)+
+            position = position_dodge(width = 1), size=2.5, vjust=1.4)+
   labs(y="Number of Crimes", fill="Year", x="Offense Type", 
        title="Colorado Crimes by County and Offense Type, 2019 vs. 2020", 
        caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") 
@@ -154,26 +151,26 @@ ggplot(type, aes(x=offensetype, y=numberofcrimes, fill=factor(year))) +
 
 type_wide <- spread(type, key="year", value="numberofcrimes")
 type_wide$perc <- (type_wide$`2020`/type_wide$`2019`)-1
+type_wide$diff <- (type_wide$`2020`-type_wide$`2019`)
 
 
 person_wide <- subset(type_wide, offensetype=="Crimes Against Person")
 
-
 ggplot(person_wide, aes(reorder(jurisdictionbygeography, perc), perc, fill=perc)) + 
   geom_bar(stat="identity") + theme_minimal() + theme +
   coord_flip() + 
-  labs(title="% change in Crimes Against Person, 2019 to 2020", x="County", y="% Change") +
-  scale_fill_gradient2(low = "#2166ac", mid = "#e4eff5", high="#b2182b") +
-  scale_y_continuous(labels=percent, limits=c(-0.23, 0.2)) + guides(fill=F)+
-  labs(y="Number of Crimes", fill="Year", x="Offense Type", 
-       title="Colorado Crimes by County and Offense Type, 2019 vs. 2020", 
+  labs(title="Percent change in Crimes Against Persons, 2019 to 2020", x="County", y="% Change", 
        caption="Data from Colorado Crime States by the Colorado Bureau of Investigation
        Note: Adams County reported exactly the same number of violent crimes (14,018) in 2019 and 2020, 
        which suggest a possible error in source data.") +
+  scale_fill_gradient2(low = "#2166ac", mid = "#e4eff5", high="#b2182b") +
+  scale_y_continuous(labels=percent, limits=c(-0.23, 0.2)) + guides(fill=F)+
   geom_text(aes(label=paste0(prettyNum(round(100*perc, 1)), "%")), 
-            position = position_dodge(width = 1), size=2.5, hjust=1.2)
+            position = position_dodge(width = 1), size=2.9, hjust=1.2) +
+  annotate("text", x=c(1:14), y=rep(0.2, 14), 
+           label=paste0("n = ", arrange(person_wide, perc)$diff), 
+           family="Source Sans Pro", size=2.8)
   
-
 # .............................................................................
 
 
