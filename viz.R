@@ -159,7 +159,7 @@ person_wide <- subset(type_wide, offensetype=="Crimes Against Person")
 ggplot(person_wide, aes(reorder(jurisdictionbygeography, perc), perc, fill=perc)) + 
   geom_bar(stat="identity") + theme_minimal() + theme +
   coord_flip() + 
-  labs(title="Percent change in Crimes Against Persons, 2019 to 2020", x="County", y="% Change", 
+  labs(title="Percent Change in Crimes Against Persons, 2019 to 2020", x="County", y="% Change", 
        caption="Data from Colorado Crime States by the Colorado Bureau of Investigation
        Note: Adams County reported exactly the same number of violent crimes (14,018) in 2019 and 2020, 
        which suggest a possible error in source data.") +
@@ -170,6 +170,23 @@ ggplot(person_wide, aes(reorder(jurisdictionbygeography, perc), perc, fill=perc)
   annotate("text", x=c(1:14), y=rep(0.2, 14), 
            label=paste0("n = ", arrange(person_wide, perc)$diff), 
            family="Source Sans Pro", size=2.8)
+
+# .............................................................................
+
+
+ggplot(type_wide, aes(offensetype, perc, fill=perc)) + 
+  geom_bar(stat="identity", position="dodge") + theme_minimal() + theme +
+  facet_wrap(~jurisdictionbygeography, ncol=2)+
+  scale_fill_gradient2(low = "#2166ac", mid = "#e4eff5", high="#b2182b") +
+  scale_y_continuous(labels=percent, limits=c(-0.65, 0.3)) + guides(fill=F) +
+  labs(title="Percent Change in Number of Crimes by Offense Type, 2019 to 2020", 
+       x="", y="% Change",
+       caption="Data from Colorado Crime States by the Colorado Bureau of Investigation
+       Note: Adams County reported exactly the same number of violent crimes (14,018) in 2019 and 2020, 
+       which suggest a possible error in source data.")+
+  scale_x_discrete(labels=wrap_format(15), position="top") +
+  geom_text(aes(label=paste0(round(100*perc, 1), "%", " (", diff, ")")), 
+            position = position_dodge(width = 1), size=2.5, vjust=1.2)
   
 # .............................................................................
 
