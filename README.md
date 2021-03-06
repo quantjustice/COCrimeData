@@ -13,4 +13,12 @@ Crimes against society decreased from 2019 to 2020, crimes against persons staye
 
 ![num](plots/co-numberofcrimes.png)
 
-![crimerate](plots/co-crimerate.png)
+![num-type](plots/co-numberofcrimes-type.png)
+
+![crimerate](plots/county-crimerate-comp.png)
+
+![crimerate](plots/county-numberofcrimes-comp.png)
+
+![crimerate](plots/county-percentchange-violencecrime.png)
+
+![crimerate](plots/county-type-comp.png)
