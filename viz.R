@@ -219,6 +219,10 @@ county <- county[,1:3]
 county$perc_crime <- (county$`2020`/county$`2019`) -1
 
 change <- left_join(jailpop, county[,c(1,4)], by=c("county"="jurisdictionbygeography"))
+
+lm <- lm(perc_jailpop~perc_crime, data=change)
+lm
+
 change <- gather(change, perc_jailpop:perc_crime, key="metric", value="perc")
 change <- mutate(change, 
                   metric=fct_recode(metric, 
@@ -242,8 +246,6 @@ ggplot(change, aes(x=reorder(county, -estimatedpopulation), y=perc, fill=metric)
   geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro", 
             position = position_dodge(width = 0.7), size=3, vjust=1.2) +
   geom_hline(aes(yintercept=0))
-
-
 
 # .............................................................................
 
