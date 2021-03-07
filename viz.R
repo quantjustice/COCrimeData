@@ -187,18 +187,108 @@ ggplot(type_wide, aes(offensetype, perc, fill=perc)) +
   scale_x_discrete(labels=wrap_format(15), position="top") +
   geom_text(aes(label=paste0(round(100*perc, 1), "%", " (", diff, ")")), 
             position = position_dodge(width = 1), size=2.5, vjust=1.2)
+
+ggplot(subset(type_wide, jurisdictionbygeography=="Boulder County"), 
+       aes(offensetype, perc, fill=perc)) + 
+  geom_bar(stat="identity", position="dodge") +
+  labs(title="Boulder County Change in Crime by Offense Type, 2019 to 2020", 
+       x="Offense Type", y="% Change",
+       caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") +
+  geom_text(aes(label=paste0(round(100*perc, 1), "%", " (", diff, ")")), 
+            position = position_dodge(width = 1), size=4, vjust=1.2, 
+            family="Source Sans Pro") +
+  guides(fill=F)+
+  scale_y_continuous(labels=percent, limits=c(-0.4, 0.4)) +
+  geom_hline(aes(yintercept=0))
+
   
 # .............................................................................
 
 
+jailpop <- read_csv("changeinjailpop.csv")
+jailpop$perc_jailpop <- as.numeric(gsub("%", "", jailpop$changeinjailpop))/100
+
+jailpop <- jailpop[,c(1, 3)]
+
+county <- read_csv("county-year.csv", skip=3)[,1:3]
+
+
+names(county) <- str_to_lower(gsub(" ", "", names(county)))
+county <- spread(county, key="incidentdate", value="numberofcrimes")
+county <- county[,1:3]
+county$perc_crime <- (county$`2020`/county$`2019`) -1
+
+
+ggplot(change, aes(x=perc_jailpop, y=perc_crime))  + 
+  geom_point() + geom_abline(aes(slope=1, intercept=0)) +
+  xlim(-0.5, 0.5) + ylim(-0.5, 0.5)
+
+
+change <- gather(change, perc_jailpop:perc_crime, key="metric", value="perc")
+
+change <- mutate(change, 
+                  metric=fct_recode(metric, 
+                                    "% Change in Jail Population"="perc_jailpop", 
+                                    "% Change in Crime (2019-2020)"="perc_crime"))
+
+ggplot(change, aes(x=county, y=perc, fill=metric)) + 
+  geom_bar(stat="identity", position="dodge", width = 0.7) +
+  theme_minimal() + theme +
+  scale_x_discrete(labels=wrap_format(10))  +
+  labs(title="Change in Jail Population and Crime Rate, 2019 to 2020", 
+       x="", y="% Change", fill="",
+       caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") +
+  scale_y_continuous(labels=percent, limits=c(-0.6, 0.6)) +
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro", 
+            position = position_dodge(width = 0.7), size=2.5, vjust=1.2) +
+  geom_hline(aes(yintercept=0))
+
+
+
+# .............................................................................
+
+ctype <- read_csv("county-type.csv", skip=3)[,1:4]
+
+names(ctype) <- str_to_lower(gsub(" ", "", names(ctype)))
+ctype <- spread(ctype, key="incidentdate", value="numberofcrimes")
+ctype <- ctype[,1:4]
+ctype$perc_crime <- (ctype$`2020`/ctype$`2019`)-1
+ctype$diff <- (ctype$`2020` - ctype$`2019`)
+
+diff <- select(ctype, jurisdictionbygeography, offensetype, diff)
+
+ctype <- pivot_wider(ctype[,c(1,2,5)], id_cols="jurisdictionbygeography", names_from="offensetype", values_from=c("perc_crime"))
+
+jail <- left_join(jailpop, ctype, by=c("county"="jurisdictionbygeography"))
+jail <- gather(jail, perc_jailpop:`Crimes Against Society`, key="metric", value="perc")
+jail <- left_join(jail, diff, by=c("county"="jurisdictionbygeography", "metric"="offensetype"))
+
+jail <- mutate(jail, 
+                  metric=fct_recode(metric, 
+                                    "% Change in Jail Population"="perc_jailpop", 
+                                    "% Change in Violent Crime"="Crimes Against Person", 
+                                    "% Change in Property Crime"="Crimes Against Property", 
+                                    "% Change in Other Crime"="Crimes Against Society"))
+
+jail$metric <- fct_relevel(jail$metric, "% Change in Jail Population")
+
+ggplot(subset(jail, !county %in% c("Washington County", "La Plata County")), aes(x=county, y=perc, fill=metric)) + 
+  geom_bar(stat="identity", position="dodge") +
+  theme_minimal() + theme +
+  scale_x_discrete(labels=wrap_format(10)) +
+  labs(title="Change in Jail Population and Crime Rate, 2019 to 2020", 
+       x="", y="% Change", fill="",
+       caption="Data from Colorado Crime States by the Colorado Bureau of Investigation") +
+  scale_y_continuous(labels=percent, limits=c(-0.6, 0.6)) +
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro",
+            position = position_dodge(width = 0.8), size=2.3, vjust=1.2) +
+  geom_hline(aes(yintercept=0))
+
+# recommend removing washington and la plata, numbers are too small
+
+# .............................................................................
+
 # TO DO: 
 # crimes in CO by month, 2019 vs. 2020?
 
-# Thank you so much for this amazing data. Could you do a comparison 
-# done # for total CO crime (total 2019 and total 2020 crime) and then 
-# done # the different types of crime for Colorado (violent crime 2019 and 2020, property crime 2019 and 2020)? 
-# done # And then change in violent crime in 2019 and 2020 in each of the 14 counties?
 
-# property crime increase
-# weird note that Adams County reported exactly the same number of violent crimes in 2019 and 2020 (14018) - suggesting error in data
-# ask if they'll tell me where it's going 

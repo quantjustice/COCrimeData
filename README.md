@@ -18,3 +18,6 @@ Most of the fourteen most populous counties saw an increase in property crime, d
 
 ![crimerate](plots/county-percentchange-type.png)
 
+# Jail Decarceration
+
+![num](plots/change-type-comp.png)
