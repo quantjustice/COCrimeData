@@ -20,4 +20,4 @@ Most of the fourteen most populous counties saw an increase in property crime, d
 
 # Jail Decarceration
 
-![num](plots/change-type-comp.png)
+![num](plots/change-type-facet.png)
