@@ -20,10 +20,10 @@ theme <- theme(text = element_text(family = "Source Sans Pro"),
 # .............................................................................
 
 # read in data
-co20 <- read_csv("co-2020.csv", skip=3)
-co19 <- read_csv("co-2019.csv", skip=3)
-type20 <- read_csv("co-2020-bytype.csv", skip=3)[,1:3]
-type19 <- read_csv("co-2019-bytype.csv", skip=3)[,1:3]
+co20 <- read_csv("data/co-2020.csv", skip=3)
+co19 <- read_csv("data/co-2019.csv", skip=3)
+type20 <- read_csv("data/co-2020-bytype.csv", skip=3)[,1:3]
+type19 <- read_csv("data/co-2019-bytype.csv", skip=3)[,1:3]
 
 # clean names
 names(co20) <- str_to_lower(gsub(" ", "", names(co20)))
@@ -205,12 +205,12 @@ ggplot(subset(type_wide, jurisdictionbygeography=="Boulder County"),
 # .............................................................................
 
 
-jailpop <- read_csv("changeinjailpop.csv")
+jailpop <- read_csv("data/changeinjailpop.csv")
 jailpop$perc_jailpop <- as.numeric(gsub("%", "", jailpop$changeinjailpop))/100
 
 jailpop <- jailpop[,c(1, 3)]
 
-county <- read_csv("county-year.csv", skip=3)[,1:3]
+county <- read_csv("data/county-year.csv", skip=3)[,1:3]
 
 
 names(county) <- str_to_lower(gsub(" ", "", names(county)))
@@ -225,7 +225,7 @@ change <- mutate(change,
                                     "% Change in Jail Population"="perc_jailpop", 
                                     "% Change in Crime (2019-2020)"="perc_crime"))
 
-pop <- read_csv("pop.csv", skip=2)[,1:3]
+pop <- read_csv("data/pop.csv", skip=2)[,1:3]
 names(pop) <- str_to_lower(gsub(" ", "", names(pop)))
 
 change <- left_join(change, pop, by=c("county"="jurisdictionbygeography"))
@@ -247,7 +247,7 @@ ggplot(change, aes(x=reorder(county, -estimatedpopulation), y=perc, fill=metric)
 
 # .............................................................................
 
-ctype <- read_csv("county-type.csv", skip=3)[,1:4]
+ctype <- read_csv("data/county-type.csv", skip=3)[,1:4]
 
 names(ctype) <- str_to_lower(gsub(" ", "", names(ctype)))
 ctype <- spread(ctype, key="incidentdate", value="numberofcrimes")
@@ -272,7 +272,7 @@ jail <- mutate(jail,
 
 jail$metric <- fct_relevel(jail$metric, "% Change in Jail Population")
 
-pop <- read_csv("pop.csv", skip=2)[,1:3]
+pop <- read_csv("data/pop.csv", skip=2)[,1:3]
 names(pop) <- str_to_lower(gsub(" ", "", names(pop)))
 
 jail <- left_join(jail, pop, by=c("county"="jurisdictionbygeography"))
@@ -319,7 +319,7 @@ co19$jurisdictionbygeography[!co19$jurisdictionbygeography %in% jailpop$county]
 
 # .............................................................................
 
-type_spec <- read_csv("type-specific.csv", skip=2)[,1:3]
+type_spec <- read_csv("data/type-specific.csv", skip=2)[,1:3]
 names(type_spec) <- str_to_lower(gsub(" ", "", names(type_spec)))
 
 person <- type_spec[1:32,]
