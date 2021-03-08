@@ -4,9 +4,12 @@ decarceration rates by county and crime.
 
 Data Source: [Colorado Crime Stats data base](https://coloradocrimestats.state.co.us/public/Browse/browsetables.aspx?PerspectiveLanguage=en)
 
+
+
 ## Notes: 
 
-* Adams County reported exactly the same number of violent crimes (14,018) in 2019 and 2020, which suggest a possible error in source data.
+  * Results were verified by the Office of Research and Statistics, Division of Criminal Justice, Colorado Department of Public Safety and presented to the Governor of Colorado.
+  * Jail decarceration and change in crime figure included in an ACLU fact sheet for SB21-62 during the 2021 Colorado legislative session. 
 
 
 # Findings
