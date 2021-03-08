@@ -18,7 +18,9 @@ Crimes against society decreased from 2019 to 2020, crimes against persons staye
 
 # Jail Decarceration
 
-No statistically significant relationship between % decarceration and % change in crime. 
+The data shows no statistically significant association between percent decrease in county jail population and percent change in crime. Douglas County and Larimer County are an illustrative example - the two counties had similar decreases in jail population (27% and 22% respectively) and overall crime increased by 11% in Douglas County and decreased by 13% in Larimer County. Adams County decreased their jail population by 34% and saw an increase in crime by 5%, where El Paso County decreased their jail population by even more (38%) and saw crime decrease by 2%. Jail depopulation does not have any measured association with crime rates.
+
+This finding also holds when comparing percent decrease in jail population to crime by offense type: there is no statistically significant association between percent decrease in county jail population and percent change in violent crime, property crime, or other crime types.
 
 ![num](plots/change-comp-annotated.png)
 
