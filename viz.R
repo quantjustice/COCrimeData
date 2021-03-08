@@ -386,7 +386,7 @@ type_spec %>%
 
 
 type_spec %>% 
-  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Person") %>% 
+  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Person"&!is.na(difference)) %>% 
   mutate(dir=ifelse(difference>0, "increase", "decrease")) %>% 
   ggplot(aes(x=reorder(offensetype, difference), y=difference,
              fill=dir)) +
@@ -394,14 +394,19 @@ type_spec %>%
   scale_x_discrete(labels=wrap_format(25)) +
   theme_minimal() + theme + guides(fill=F) +
   labs(y="Change from 2019 to 2020", x="Violent Crime Offense Type",
-       title="Change in Violent Crime by Offense Type, 2019 to 2020",
+       title="Colorado Statewide Change in Violent Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values given for justifiable homicide offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
             family="Source Sans Pro", size=3, hjust=1.2)+
-  scale_y_continuous(labels = scales::comma, limits = c(-2250,2500)) 
+  scale_y_continuous(labels = scales::comma, limits = c(-2250,2500)) +
+  annotate("text", y=1500, x=7, label="Increase in aggravated assaults \nalmost entirely offset by \ndecrease in simple assault", 
+           size=3.5, family="Source Sans Pro", lineheight = 1)+
+  geom_segment(aes(x=1,xend=5.5, y=100,yend=1000), size=0.25) +
+  geom_segment(aes(x=13,xend=8.5, y=1500,yend=1500), size=0.25) 
+  
 
 type_spec %>% 
-  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Property") %>% 
+  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Property"&!is.na(difference)) %>% 
   mutate(dir=ifelse(difference>0, "increase", "decrease")) %>% 
   ggplot(aes(x=reorder(offensetype, difference), y=difference,
              fill=dir)) +
@@ -409,14 +414,21 @@ type_spec %>%
   scale_x_discrete(labels=wrap_format(25)) +
   theme_minimal() + theme + guides(fill=F) +
   labs(y="Change from 2019 to 2020", x="Property Crime Offense Type",
-       title="Change in Property Crime by Offense Type, 2019 to 2020",
+       title="Colorado Statewide Change in Property Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
             family="Source Sans Pro", size=3, hjust=1.2)+
-  scale_y_continuous(labels = scales::comma, limits=c(-3500, 9000)) 
+  scale_y_continuous(labels = scales::comma, limits=c(-3500, 9000), breaks = c(-2000, 0, 2000, 4000, 6000, 8000)) +
+  annotate("text", y=6000, x=17, label="increase in property crime driven by increase \nin motor vehicle theft, vandalism, theft from \na motor vehicle, and identity theft.", 
+           size=3.5, family="Source Sans Pro", lineheight = 1)+
+  geom_segment(aes(x=23,xend=18.5, y=7000,yend=7000), size=0.25)+
+  geom_segment(aes(x=2.5,xend=2.5, y=300,yend=2500), size=0.25)+
+  annotate("text", y=5300, x=2.5, label="declines in shoplifting, theft from building.", 
+           size=3.5, family="Source Sans Pro", lineheight = 1)
+
 
 type_spec %>% 
-  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Society") %>% 
+  subset(!offensetypegen==offensetype & offensetypegen=="Crimes Against Society"&!is.na(difference)) %>% 
   mutate(dir=ifelse(difference>0, "increase", "decrease")) %>% 
   ggplot(aes(x=reorder(offensetype, difference), y=difference,
              fill=dir)) +
@@ -424,7 +436,7 @@ type_spec %>%
   scale_x_discrete(labels=wrap_format(25)) +
   theme_minimal() + theme + guides(fill=F) +
   labs(y="Change from 2019 to 2020", x="Crime Offense Type",
-       title="Change in Crimes Against Society by Offense Type, 2019 to 2020",
+       title="Colorado Statewide Change in Crimes Against Society by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values for sports tampering offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
             family="Source Sans Pro", size=3, hjust=1.2)+
@@ -484,8 +496,10 @@ summary(lm)
 
 # .............................................................................
 
-boulder <- read_csv("data/boulder-specific.csv", skip = 2)[,1:4]
+boulder <- read_csv("data/boulderpolicedept-specific.csv", skip = 3)[,1:4]
 names(boulder) <- str_to_lower(gsub(" ", "", names(boulder)))
+
+boulder <- subset(boulder, incidentdate %in% c("2020", "2019"))
 
 person <- boulder[1:32,]
 property <- boulder[33:84,]
