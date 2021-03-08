@@ -440,7 +440,11 @@ type_spec %>%
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values for sports tampering offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
             family="Source Sans Pro", size=3, hjust=1.2)+
-  scale_y_continuous(labels = scales::comma, limits = c(-8000,6000)) 
+  scale_y_continuous(labels = scales::comma, limits = c(-8000,6000)) +
+  geom_segment(aes(x=2.8,xend=5, y=-4200,yend=-4200), size=0.25)+
+  annotate("text", y=-4200, x=5.6, label="huge declines in drug crime \ndriving crimes against society decrease", 
+           size=3.5, family="Source Sans Pro", lineheight = 1)
+
 
 # .............................................................................
 
