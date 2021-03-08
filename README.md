@@ -13,23 +13,14 @@ Data Source: [Colorado Crime Stats data base](https://coloradocrimestats.state.c
 
 Crimes against society decreased from 2019 to 2020, crimes against persons stayed the same, increase in property crime accounts for the entirety of the increase in crime from 2019 to 2020. 
 
-![num](plots/co-numberofcrimes.png)
+![num](plots/co-numberofcrimes-annotated.png)
 
-## By County
-
-Most of the fourteen most populous counties saw an increase in property crime, decrease in "crimes against society" and little or no change in crimes against persons. 
-
-![crimerate](plots/county-percentchange-type.png)
 
 # Jail Decarceration
 
 No statistically significant relationship between % decarceration and % change in crime. 
 
-![num](plots/change-comp.png)
-
-Offense types show no relationship to decarceration. 
-
-![num](plots/change-type-facet.png)
+![num](plots/change-comp-annotated.png)
 
 # Detailed Offense Types 
 
