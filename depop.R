@@ -96,19 +96,23 @@ g <- ggplot(subset(change, estimatedpopulation>100000), aes(x=reorder(county, -e
        Annotations below county name give 2020 estimated county population.") +
   scale_y_continuous(labels=percent, limits=c(-0.8, 0.6)) +
   geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro", 
-            position = position_dodge(width = 0.7), size=4, vjust="outward") +
-  geom_hline(aes(yintercept=0)) + theme(plot.title=element_text(face="bold")) 
+            position = position_dodge(width = 0.7), size=5, vjust="outward") +
+  geom_hline(aes(yintercept=0)) + 
+  theme(plot.title=element_text(face="bold", size = 16), 
+        plot.subtitle=element_text(size = 12), 
+        legend.text=element_text(size = 12), 
+        axis.text.x=element_text(size = 10)) 
   
-g + annotate("text", x=7.2, y=0.5, label="Larimer County and Douglas County also had similar decreases \nin jail population but crime decreased by 13% in Larimer County \nand increased by 11% in Douglas County.", 
-           size=3, family="Source Sans Pro", lineheight = 1) +
+g + annotate("text", x=8, y=0.5, label="Larimer County and Douglas County also had similar decreases \nin jail population but crime decreased by 13% in Larimer County \nand increased by 11% in Douglas County.", 
+           size=4, family="Source Sans Pro", lineheight = 1) +
   geom_segment(aes(x=6.5,xend=6, y=0.38,yend=0.025), size=0.25)+
   geom_segment(aes(x=6.8,xend=6.8, y=0.38,yend=0.17), size=0.25)+ 
   theme(plot.title=element_text(face="bold")) + 
-  annotate("text", x=6.5, y=-0.65, label="Jefferson County had the greatest decrease \nin jail population and saw no change in overall crime.", 
-           size=3, family="Source Sans Pro", lineheight = 1) +
+  annotate("text", x=7, y=-0.65, label="Jefferson County had the greatest decrease \nin jail population and saw no change in overall crime.", 
+           size=4, family="Source Sans Pro", lineheight = 1) +
   geom_segment(aes(x=5.1, xend=4.3, y=-0.62,yend=-0.58), size=0.25) + 
   annotate("text", x=3, y=0.5, label="El Paso County and Arapahoe County had similar decreases \nin jail population but crime decreased by 2% in El Paso County \nand increased by 9% in Arapahoe County.", 
-           size=3, family="Source Sans Pro", lineheight = 1) +
+           size=4, family="Source Sans Pro", lineheight = 1) +
   geom_segment(aes(x=2.5,xend=2, y=0.38,yend=0.025), size=0.25)+
   geom_segment(aes(x=2.8,xend=2.8, y=0.38,yend=0.17), size=0.25) +
 theme(plot.caption=element_text(face="italic"))
