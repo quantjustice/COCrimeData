@@ -532,7 +532,7 @@ boulder %>%
   scale_x_discrete(labels=wrap_format(25)) +
   theme_minimal() + theme + guides(fill=F) +
   labs(y="Change from 2019 to 2020", x="Violent Crime Offense Type",
-       title="Boulder County Change in Violent Crime by Offense Type, 2019 to 2020",
+       title="Boulder Police Department Change in Violent Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values given for justifiable homicide or human trafficking offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
             family="Source Sans Pro", size=3, hjust=1.2)+
@@ -570,6 +570,9 @@ boulder %>%
 
 # .............................................................................
 
+
+
+# .............................................................................
 
 
 # TO DO: 
