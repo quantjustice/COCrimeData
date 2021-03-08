@@ -1,0 +1,56 @@
+"","offensetypegen","offensetype","2019","2020","percentchange","difference"
+"1","Crimes Against Person","Crimes Against Person",64104,64117,0,13
+"2","Crimes Against Person","Murder and Nonnegligent Manslaughter",227,292,0.29,65
+"3","Crimes Against Person","Negligent Manslaughter",59,42,-0.29,-17
+"4","Crimes Against Person","Justifiable Homicide",NA,NA,NA,NA
+"5","Crimes Against Person","Kidnapping/Abduction",2150,2402,0.12,252
+"6","Crimes Against Person","Rape",2678,2267,-0.15,-411
+"7","Crimes Against Person","Sodomy",789,751,-0.05,-38
+"8","Crimes Against Person","Sexual Assault With An Object",640,615,-0.04,-25
+"9","Crimes Against Person","Fondling",2676,2002,-0.25,-674
+"10","Crimes Against Person","Incest",64,70,0.09,6
+"11","Crimes Against Person","Statutory Rape",157,83,-0.47,-74
+"12","Crimes Against Person","Aggravated Assault",14102,16560,0.17,2458
+"13","Crimes Against Person","Simple Assault",35255,33461,-0.05,-1794
+"14","Crimes Against Person","Intimidation",5251,5542,0.06,291
+"15","Crimes Against Person","Human Trafficking, Commercial Sex Acts",49,29,-0.41,-20
+"16","Crimes Against Person","Human Trafficking, Involuntary Servitude",7,1,-0.86,-6
+"17","Crimes Against Property","Crimes Against Property",233807,257982,0.1,24175
+"18","Crimes Against Property","Arson",895,1327,0.48,432
+"19","Crimes Against Property","Bribery",166,156,-0.06,-10
+"20","Crimes Against Property","Burglary/Breaking & Entering",19841,22484,0.13,2643
+"21","Crimes Against Property","Counterfeiting/Forgery",5097,3898,-0.24,-1199
+"22","Crimes Against Property","Destruction/Damage/Vandalism of Property",41558,48902,0.18,7344
+"23","Crimes Against Property","Embezzlement",436,311,-0.29,-125
+"24","Crimes Against Property","Extortion/Blackmail",535,750,0.4,215
+"25","Crimes Against Property","False Pretenses/Swindle/Confidence Game",7496,7712,0.03,216
+"26","Crimes Against Property","Credit Card/Automated Teller Machine Fraud",5562,5147,-0.07,-415
+"27","Crimes Against Property","Impersonation",4252,3760,-0.12,-492
+"28","Crimes Against Property","Welfare Fraud",15,47,2.13,32
+"29","Crimes Against Property","Wire Fraud",499,521,0.04,22
+"30","Crimes Against Property","Identity Theft",6904,11909,0.72,5005
+"31","Crimes Against Property","Hacking/Computer Invasion",620,612,-0.01,-8
+"32","Crimes Against Property","Robbery",3716,3957,0.06,241
+"33","Crimes Against Property","Pocket-picking",221,172,-0.22,-49
+"34","Crimes Against Property","Purse-snatching",310,255,-0.18,-55
+"35","Crimes Against Property","Shoplifting",22141,19416,-0.12,-2725
+"36","Crimes Against Property","Theft From Building",10202,8293,-0.19,-1909
+"37","Crimes Against Property","Theft From Coin Operated Machine or Device",391,320,-0.18,-71
+"38","Crimes Against Property","Theft From Motor Vehicle",27711,33632,0.21,5921
+"39","Crimes Against Property","Theft of Motor Vehicle Parts/Accessories",11554,13016,0.13,1462
+"40","Crimes Against Property","All Other Larceny",38548,37551,-0.03,-997
+"41","Crimes Against Property","Motor Vehicle Theft",22321,30935,0.39,8614
+"42","Crimes Against Property","Stolen Property Offenses",2816,2899,0.03,83
+"43","Crimes Against Society","Crimes Against Society",42317,31268,-0.26,-11049
+"44","Crimes Against Society","Drug/Narcotic Violations",21856,14398,-0.34,-7458
+"45","Crimes Against Society","Drug Equipment Violations",11956,7799,-0.35,-4157
+"46","Crimes Against Society","Betting/Wagering",20,17,-0.15,-3
+"47","Crimes Against Society","Operating/Promoting/Assisting Gambling",3,1,-0.67,-2
+"48","Crimes Against Society","Gambling Equipment Violations",1,3,2,2
+"49","Crimes Against Society","Sports Tampering",NA,NA,NA,NA
+"50","Crimes Against Society","Pornography/Obscene Material",905,871,-0.04,-34
+"51","Crimes Against Society","Prostitution",330,121,-0.63,-209
+"52","Crimes Against Society","Assisting or Promoting Prostitution",90,85,-0.06,-5
+"53","Crimes Against Society","Purchasing Prostitution",31,18,-0.42,-13
+"54","Crimes Against Society","Weapon Law Violations",6203,7197,0.16,994
+"55","Crimes Against Society","Animal Cruelty",922,758,-0.18,-164
