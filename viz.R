@@ -14,7 +14,7 @@ library(scales)
 
 # load fonts and set theme
 loadfonts()
-theme <- theme(text = element_text(family = "Source Sans Pro"),
+theme <- theme(text = element_text(family = "Avenir Next"),
                legend.position = "bottom", panel.grid.minor.x=element_blank())
 
 # .............................................................................
@@ -63,7 +63,7 @@ ggplot(count, aes(reorder(jurisdictionbygeography, numberofcrimes),
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") + 
   theme + scale_fill_manual(values=brewer.pal(9, "Greens")[c(3,7)])
 
-# pdf("event-attend-type-extra.pdf", family="Source Sans Pro", width=7, height=8)
+# pdf("event-attend-type-extra.pdf", family="Avenir Next", width=7, height=8)
 # dev.off()
 # embed_fonts("event-attend-type-extra.pdf", outfile="event-attend-type-extra.pdf")
 
@@ -102,15 +102,15 @@ type_co <- subset(type, jurisdictionbygeography=="Colorado" &
 
 ggplot(type_co, aes(factor(year), y=numberofcrimes, fill=offensetype)) + 
   geom_bar(stat="identity", width=0.8) + theme_minimal() + theme +
-  annotate("text", x=c(1,2), y=c(350000,365000), label=c("340,228", "353,367"), family = "Source Sans Pro")+ 
+  annotate("text", x=c(1,2), y=c(350000,365000), label=c("340,228", "353,367"), family = "Avenir Next")+ 
   theme + scale_fill_manual(values=brewer.pal(9, "Greens")[c(4,5,6)])+
   labs(y="Number of Crimes", x="Year", fill="Offense Type", 
        title="Colorado Number of Crimes, 2019 vs. 2020", 
        subtitle="Crimes against society decreased from 2019 to 2020, crimes against persons stayed the same, \nincrease in property crime accounts for the entirety of the increase in crime from 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021")+
   scale_y_continuous(labels = scales::comma) + 
-  annotate("text", x=c(1,1,1), y=c(310000, 175000, 22000), label=c("64,104","233,807","42,317"), family = "Source Sans Pro")+ 
-  annotate("text", x=c(2,2,2), y=c(320000, 180000, 15000), label=c("64,117", "257,982", "31,268"), family = "Source Sans Pro")
+  annotate("text", x=c(1,1,1), y=c(310000, 175000, 22000), label=c("64,104","233,807","42,317"), family = "Avenir Next")+ 
+  annotate("text", x=c(2,2,2), y=c(320000, 180000, 15000), label=c("64,117", "257,982", "31,268"), family = "Avenir Next")
 
 # add descriptive labels?
 # crimes against society decreased, crimes against persons stayed the same, only 
@@ -134,7 +134,7 @@ g <- ggplot(type_co, aes(offensetype, y=numberofcrimes, fill=year)) +
   scale_y_continuous(labels = scales::comma, limits = c(0, 300000))
 g + 
   annotate("text", x=c(1,2,3), y=c(100000, 285000, 80000), label=c("0.0% change","10.3% increase", "26.1% decrease"), 
-           size=4, family="Source Sans Pro", lineheight = 1, fontface="italic") +
+           size=4, family="Avenir Next", lineheight = 1, fontface="italic") +
   geom_segment(aes(x=1,xend=1, y=70000,yend=90000), size=0.25)+
   geom_segment(aes(x=2,xend=2, y=262000,yend=274000), size=0.25)+
   geom_segment(aes(x=3,xend=3, y=50000,yend=70000), size=0.25) 
@@ -179,7 +179,7 @@ ggplot(person_wide, aes(reorder(jurisdictionbygeography, perc), perc, fill=perc)
             position = position_dodge(width = 1), size=2.9, hjust=1.2) +
   annotate("text", x=c(1:14), y=rep(0.2, 14), 
            label=paste0("n = ", arrange(person_wide, perc)$diff), 
-           family="Source Sans Pro", size=2.8)
+           family="Avenir Next", size=2.8)
 
 # .............................................................................
 
@@ -206,7 +206,7 @@ ggplot(subset(type_wide, jurisdictionbygeography=="Boulder County"),
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") +
   geom_text(aes(label=paste0(round(100*perc, 1), "%", " (", diff, ")")), 
             position = position_dodge(width = 1), size=4, vjust=1.2, 
-            family="Source Sans Pro") +
+            family="Avenir Next") +
   guides(fill=F)+ theme_minimal() +theme +
   scale_y_continuous(labels=percent, limits=c(-0.4, 0.4)) +
   geom_hline(aes(yintercept=0))
@@ -253,7 +253,7 @@ ggplot(subset(change, estimatedpopulation>100000), aes(x=reorder(county, -estima
        x="", y="% Change", fill="",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nAnnotations below county name give 2020 estimated county population.") +
   scale_y_continuous(labels=percent, limits=c(-0.6, 0.6)) +
-  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro", 
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Avenir Next", 
             position = position_dodge(width = 0.7), size=4, vjust="outward") +
   geom_hline(aes(yintercept=0))
 
@@ -266,15 +266,15 @@ ggplot(subset(change, estimatedpopulation>100000), aes(x=reorder(county, -estima
        x="", y="% Change", fill="",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nAnnotations below county name give 2020 estimated county population.") +
   scale_y_continuous(labels=percent, limits=c(-0.8, 0.6)) +
-  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro", 
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Avenir Next", 
             position = position_dodge(width = 0.7), size=4, vjust="outward") +
   geom_hline(aes(yintercept=0)) + theme(plot.title=element_text(face="bold")) + 
   annotate("text", x=6.9, y=0.5, label="Larimer County and Douglas County had similar decreases \nin jail population but crime decreased by 13% in Larimer County \nand increased by 11% in Douglas County.", 
-           size=3, family="Source Sans Pro", lineheight = 1) +
+           size=3, family="Avenir Next", lineheight = 1) +
   geom_segment(aes(x=6.5,xend=6, y=0.38,yend=0.025), size=0.25)+
   geom_segment(aes(x=6.8,xend=6.8, y=0.38,yend=0.17), size=0.25)+ theme(plot.title=element_text(face="bold")) + 
   annotate("text", x=6.5, y=-0.65, label="Jefferson County had the greatest decrease \nin jail population and saw no change in overall crime.", 
-           size=3, family="Source Sans Pro", lineheight = 1) +
+           size=3, family="Avenir Next", lineheight = 1) +
   geom_segment(aes(x=5.1, xend=4.3, y=-0.62,yend=-0.58), size=0.25)
   
 
@@ -325,7 +325,7 @@ ggplot(subset(jail, !county %in% c("Washington County (4,899)", "La Plata County
        x="", y="% Change", fill="",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nAnnotations below county name give 2020 estimated county population.") +
   scale_y_continuous(labels=percent, limits=c(-0.6, 0.6)) +
-  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro",
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Avenir Next",
             position = position_dodge(width = 0.8), size=2.3, vjust=1.2) +
   geom_hline(aes(yintercept=0)) + 
   scale_fill_manual(values=brewer.pal(9, "Spectral")[c(9,6,7,8)])
@@ -339,7 +339,7 @@ ggplot(subset(jail, !county %in% c("Washington County (4,899)", "La Plata County
        x="", y="% Change", fill="",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nAnnotations below county name give 2020 estimated county population.") +
   scale_y_continuous(labels=percent, limits=c(-0.6, 0.6)) +
-  geom_text(aes(label=paste0(round(100*perc), "%")), family="Source Sans Pro",
+  geom_text(aes(label=paste0(round(100*perc), "%")), family="Avenir Next",
             position = position_dodge(width = 0.8), size=2.3, vjust=1.2) +
   geom_hline(aes(yintercept=0)) + facet_wrap(~reorder(county, -estimatedpopulation), nrow=2, scales="free_x") +
   scale_fill_manual(values=brewer.pal(9, "Spectral")[c(9,6,7,8)])
@@ -397,10 +397,10 @@ type_spec %>%
        title="Colorado Statewide Change in Violent Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values given for justifiable homicide offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma, limits = c(-2250,2500)) +
   annotate("text", y=1500, x=7, label="Increase in aggravated assaults \nalmost entirely offset by \ndecrease in simple assault", 
-           size=3.5, family="Source Sans Pro", lineheight = 1)+
+           size=3.5, family="Avenir Next", lineheight = 1)+
   geom_segment(aes(x=1,xend=5.5, y=100,yend=1000), size=0.25) +
   geom_segment(aes(x=13,xend=8.5, y=1500,yend=1500), size=0.25) 
   
@@ -417,14 +417,14 @@ type_spec %>%
        title="Colorado Statewide Change in Property Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma, limits=c(-3500, 9000), breaks = c(-2000, 0, 2000, 4000, 6000, 8000)) +
   annotate("text", y=6000, x=17, label="increase in property crime driven by increase \nin motor vehicle theft, vandalism, theft from \na motor vehicle, and identity theft.", 
-           size=3.5, family="Source Sans Pro", lineheight = 1)+
+           size=3.5, family="Avenir Next", lineheight = 1)+
   geom_segment(aes(x=23,xend=18.5, y=7000,yend=7000), size=0.25)+
   geom_segment(aes(x=2.5,xend=2.5, y=300,yend=2500), size=0.25)+
   annotate("text", y=5300, x=2.5, label="declines in shoplifting, theft from building.", 
-           size=3.5, family="Source Sans Pro", lineheight = 1)
+           size=3.5, family="Avenir Next", lineheight = 1)
 
 
 type_spec %>% 
@@ -439,11 +439,11 @@ type_spec %>%
        title="Colorado Statewide Change in Crimes Against Society by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values for sports tampering offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma, limits = c(-8000,6000)) +
   geom_segment(aes(x=2.8,xend=5, y=-4200,yend=-4200), size=0.25)+
   annotate("text", y=-4200, x=5.6, label="huge declines in drug crime \ndriving crimes against society decrease", 
-           size=3.5, family="Source Sans Pro", lineheight = 1)
+           size=3.5, family="Avenir Next", lineheight = 1)
 
 
 # .............................................................................
@@ -555,7 +555,7 @@ boulder %>%
        title="Boulder Police Department Change in Violent Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values given for justifiable homicide or human trafficking offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma) 
 
 boulder %>% 
@@ -570,7 +570,7 @@ boulder %>%
        title="Boulder Police Department Change in Property Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma) 
 
 boulder %>% 
@@ -585,7 +585,7 @@ boulder %>%
        title="Boulder Police Department Change in Crimes Against Society by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values for sports tampering offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma, limits=c(-425, 200)) 
 
 tot <- tot %>% 
@@ -610,7 +610,7 @@ tot %>%
        title="Boulder Police Department Change in Violent Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values given for justifiable homicide or human trafficking offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma) 
 
 tot %>% 
@@ -625,7 +625,7 @@ tot %>%
        title="Boulder Police Department Change in Property Crime by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma) 
 
 tot %>% 
@@ -640,7 +640,7 @@ tot %>%
        title="Boulder Police Department Change in Crimes Against Society by Offense Type, 2019 to 2020",
        caption="Data from Colorado Crime Stats by the Colorado Bureau of Investigation, retrieved 6 March 2021 \nNo values for sports tampering offense type.") +
   geom_text(aes(label=prettyNum(difference, big.mark = ",")), 
-            family="Source Sans Pro", size=3, hjust=1.2)+
+            family="Avenir Next", size=3, hjust=1.2)+
   scale_y_continuous(labels = scales::comma, limits=c(-425, 200)) 
 
 tot$perc <- (tot$`2020`/tot$`2019`)-1
@@ -659,6 +659,7 @@ tot %>% group_by(offensetypegen) %>% summarize(difference=sum(difference, na.rm=
 
 
 
+
 # .............................................................................
 
 
@@ -666,3 +667,18 @@ tot %>% group_by(offensetypegen) %>% summarize(difference=sum(difference, na.rm=
 # crimes in CO by month, 2019 vs. 2020?
 # difference in difference regression
 # write up a short description of how bullshit the causal pathway is 
+
+
+# Sams Crime Modelling ----------------------------------------------------
+
+ctype <- read_csv("data/county-type.csv", skip=3)[,1:4]
+
+names(ctype) <- str_to_lower(gsub(" ", "", names(ctype)))
+ctype
+
+pop <- read_csv("data/pop.csv", skip=2)[,1:3]
+names(pop) <- str_to_lower(gsub(" ", "", names(pop)))
+
+pop
+
+
